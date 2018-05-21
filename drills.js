@@ -21,12 +21,24 @@ class HashMap {
         }
 
         const index = this._findSlot(key);
-        this._slots[index] = {
-            key,
-            value,
-            deleted: false
-        };
-        this.length++;
+
+
+        //if key exists change value but not length
+        //if not add value and change length
+        console.log('key is ', key);
+       
+        if(!this._slots[index]){
+            this.length++;
+        } 
+            this._slots[index]={
+                key,
+                value,
+                deleted: false
+            }
+
+        console.log('length is ', this.length);
+        console.log('value is ', value);
+
     }
 
     remove(key) {
@@ -94,9 +106,22 @@ function main() {
     lor.set('LadyOfLight', 'Galadriel');
     lor.set('HalfElven', 'Arwen');
     lor.set('Ent', 'Treebeard');
-    // console.log(lor);
-    console.log(lor.get('Maiar'));
+    console.log(lor);
+    // console.log(lor.get('Maiar'));
+    //if you have same key, it will override value for key. won't insert new item
+    //so length won't change 
 }
 
+function palindrome(string) {
+    let checker = new HashMap();
+    //every single character in string will be even
+    //only one character is going to be odd
+    //split strings into letters
+    //key would be each letter
+    //value would be 1, and increment it
+    //hash based on string 
+    let charac = 0;
+
+}
 
 main();
