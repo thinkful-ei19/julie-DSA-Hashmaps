@@ -25,7 +25,7 @@ class HashMap {
 
         //if key exists change value but not length
         //if not add value and change length
-        console.log('key is ', key);
+        // console.log('key is ', key);
        
         if(!this._slots[index]){
             this.length++;
@@ -36,8 +36,8 @@ class HashMap {
                 deleted: false
             }
 
-        console.log('length is ', this.length);
-        console.log('value is ', value);
+        // console.log('length is ', this.length);
+        // console.log('value is ', value);
 
     }
 
@@ -106,22 +106,68 @@ function main() {
     lor.set('LadyOfLight', 'Galadriel');
     lor.set('HalfElven', 'Arwen');
     lor.set('Ent', 'Treebeard');
-    console.log(lor);
+    // console.log(lor);
     // console.log(lor.get('Maiar'));
     //if you have same key, it will override value for key. won't insert new item
     //so length won't change 
 }
+main();
+
+function containsKey(hashMap, key) {
+    for (let i = 0; i<hashMap._slots.length; i++) {
+        if(hashMap.get(key)){
+            return true;
+        } 
+    }
+    return false;
+}
 
 function palindrome(string) {
-    let checker = new HashMap();
+    let pal = new HashMap();
     //every single character in string will be even
     //only one character is going to be odd
     //split strings into letters
     //key would be each letter
     //value would be 1, and increment it
     //hash based on string 
-    let charac = 0;
-
+    let count = 0;
+    let item = string.split('');
+    console.log(item)
+    for (let i = 0; i < item.length; i++) {
+        let container = pal.get(item[i]);
+        console.log(container);
+        // pal.set(item[i], value+1)
+        // console.log(container);
+        // if(container % 2 !== 0) {
+        //     count ++;
+        // }
+        // if(count > 1) {
+        //     return false;
+        // }
+        return true;
+    }
 }
 
-main();
+palindrome('racecar');
+
+
+
+
+
+
+
+
+function anagram(array) {
+    //objects with keys
+    //return array of anagrams 
+}
+
+
+
+
+
+
+
+
+
+
