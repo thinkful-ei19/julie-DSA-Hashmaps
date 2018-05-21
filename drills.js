@@ -9,7 +9,7 @@ class HashMap {
     get(key) {
         const index = this._findSlot(key);
         if (this._slots[index] === undefined) {
-            throw new Error('Key error');
+            return null;
         }
         return this._slots[index].value;
     }
@@ -40,6 +40,7 @@ class HashMap {
         // console.log('value is ', value);
 
     }
+
 
     remove(key) {
         const index = this._findSlot(key);
@@ -122,35 +123,67 @@ function containsKey(hashMap, key) {
     return false;
 }
 
-function palindrome(string) {
-    let pal = new HashMap();
-    //every single character in string will be even
-    //only one character is going to be odd
-    //split strings into letters
-    //key would be each letter
-    //value would be 1, and increment it
-    //hash based on string 
-    let count = 0;
-    let item = string.split('');
-    console.log(item)
-    for (let i = 0; i < item.length; i++) {
-        let container = pal.get(item[i]);
-        console.log(container);
-        // pal.set(item[i], value+1)
-        // console.log(container);
-        // if(container % 2 !== 0) {
-        //     count ++;
-        // }
-        // if(count > 1) {
-        //     return false;
-        // }
-        return true;
+// function palindrome(string) {
+//     let pal = new HashMap();
+//     //every single character in string will be even
+//     //only one character is going to be odd
+//     //split strings into letters
+//     //key would be each letter
+//     //value would be 1, and increment it
+//     //hash based on string 
+//     let count = 0;
+//     let item = string.split('');
+//     console.log(item)
+//     for (let i = 0; i < item.length; i++) {
+//         let container = pal.get(item[i]);
+//         console.log(container);
+//         // pal.set(item[i], value+1)
+//         // console.log(container);
+//         // if(container % 2 !== 0) {
+//         //     count ++;
+//         // }
+//         // if(count > 1) {
+//         //     return false;
+//         // }
+//         return true;
+//     }
+// }
+
+// palindrome('racecar');
+
+function permutation(string) {
+    let oddChar = false;
+    let hm = new HashMap();
+    for (let i = 0; i<string.length; i++) {
+        if(containsKey(hm, string[i])) {
+            let value = hm.get(string[i]);
+            hm.set(string[i], (value+1)) //different character will have null so add 1 to switch to integer to keep track
+        } else { //assign string with value 1
+            hm.set(string[i], 1);
+        }
     }
+
+    for(let i = 0; i < hm._slots.length; i++) {
+        for(let keys in hm._slots[i]) {
+            if(hm._slots[i][keys]& 1) { //as long as keys(letters) that are set contain 1 occurrence
+                if(oddChar) {//bottom line can't have more than one character with value of one ^
+                    return false; //can only have 1, value of 1, if not, overwrite to false
+                } 
+            oddChar = true; 
+            }
+        }
+    }
+    return true;
+
 }
 
-palindrome('racecar');
-
-
+function displayHMKeys(hm) {
+    const arr = hm.keys();
+    for(let i = 0; i<arr.length; i++) {
+        console.log(`Bucket'${i} : ${arr[i]}`);
+    }
+}
+console.log(permutation('racecar'));
 
 
 
