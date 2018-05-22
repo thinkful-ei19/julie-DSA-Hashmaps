@@ -183,19 +183,45 @@ function displayHMKeys(hm) {
         console.log(`Bucket'${i} : ${arr[i]}`);
     }
 }
-console.log(permutation('racecar'));
+// console.log(permutation('racecar'));
 
 
 
 
-
+function sortWord(word) {
+    return word.split("").sort().join("");
+}
 
 function anagram(array) {
     //objects with keys
     //return array of anagrams 
+    //sort by alphabet
+    //testing word against another word
+    //helper function to organize word into alphabetical order
+    let container = [];
+
+    for (let i = 0; i<array.length; i++) {
+        let currentWord = sortWord(array[i])
+        container.push(array.splice(i, 1));
+        --i; //after evaluated, do decrement. just pulled out so reset index 
+        for(let j = 0; j < array.length; j++) {
+            console.log(i, array[j]);
+            let w = sortWord(array[j]);
+
+            if(currentWord === w) { //alphabetical order compared to other words in the array
+                console.log(w, currentWord);
+                container[container.length-1].push(array.splice(j, 1)[0]) //container array, find last index in container
+                --j; //taking out of original array and put it in with splice and decrease index by 1
+            }
+
+        }
+    }
+    
+    console.log(container);
 }
+anagram(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'])
 
-
+//output [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']]
 
 
 
