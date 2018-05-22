@@ -224,7 +224,7 @@ anagram(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'])
 //output [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']]
 
 
-function anagramGrouping(array) {
+function anagramHashMap(array) {
     let newNew = new HashMap();
     for (let i = 0; i < array.length; i++) {
       let count = 0;
@@ -233,6 +233,7 @@ function anagramGrouping(array) {
         newNew.set(array[i], count);
       }
     }
+}
 
 
 
